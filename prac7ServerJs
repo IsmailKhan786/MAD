@@ -1,0 +1,93 @@
+Create folder 
+create index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>PWA Tutorial</title>
+        <meta name="Demo App" content="#aa7700">
+        <meta name="theme-color" content="black">
+        <link rel="manifest" href="manifest.json">
+    </head>
+    <body>
+        <h1 style="color: yellow">Data Pirates</h1>
+        <p>
+            This is a simple tutorial for
+            creating a PWA application.
+        </p>
+      
+        <script>
+            window.addEventListener('load', () => {
+            registerSW();
+            });
+        
+            // Register the Service Worker
+            async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                await navigator
+                        .serviceWorker
+                        .register('serviceworker.js');
+                }
+                catch (e) {
+                console.log('SW registration failed');
+                }
+            }
+            }
+        </script>
+        
+        </body>
+</html>
+
+
+create folder named image and inside add two random images sie 192 and 512
+
+create manifest.json 
+
+    {"name":"PWA Tutorial",
+    "short_name":"PWA",
+    "start_url":"index.html",
+    "display":"standalone",
+    "background_color":"#5900b3",
+    "theme_color":"black",
+    "scope": ".",
+    "description":"This is a PWA tutorial.",
+    "icons":[
+    {
+    "src":"image/icon1.png",                   
+    "sizes":"192x192",
+    "type":"image/png"
+    },
+    {
+    "src":"image/icon2.png",
+    "sizes":"512x512",
+    "type":"image/png"
+    }
+]
+}
+
+Create service worker.js 
+var staticCacheName = "pwa";
+
+self.addEventListener("install", function (e) {
+e.waitUntil(
+    caches.open(staticCacheName).then(function (cache) {
+    return cache.addAll(["/"]);
+    })
+);
+});
+
+self.addEventListener("fetch", function (event) {
+console.log(event.request.url);
+
+event.respondWith(
+    caches.match(event.request).then(function (response) {
+    return response || fetch(event.request);
+    })
+);
+});
+
+RUN INDEX.HTML  INSPECT  APPLICATIONS - MANIFEST 
+DOWNLOAD  
