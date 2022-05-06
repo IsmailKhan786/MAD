@@ -1,0 +1,20 @@
+
+go to android/app/src/build.gradde/ 
+inside default.config change the package name to com.demo.projectname  
+android/app/src/debug/AndroidMainfest.xml (change package)
+android/app/src/main/AndroidMainfest.xaml (change package)
+ndroid/app/src/profile/AndroidMainfest.xml (change package) and save all the changes  
+Go to firebase and click on android icon 
+
+-add  android package name same as changed in vs code flutter
+add app nickname and click on register 
+
+Add the plugin as follows: Project-level build.gradle (/build.gradle): inside dependencies : classpath  'com.google.gms:google-services:4.3.10
+
+App-level build.gradle (//build.gradle): at the bottom of page implementation 
+ apply plugin: 'com.google.gms.google-services'
+
+in anroid src downloaded
+
+now in firebase click on continue console 
+run the flutter project if no error in debug console then connectivity successful
