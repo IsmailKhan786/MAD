@@ -1,0 +1,76 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+void main() {
+  runApp(const MyApp());
+  debugPaintSizeEnabled = false;
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Experiment 9"),
+        ),
+        body: const Center(
+          child:
+              Text("This is the example of a flutter program to add bottom navigation with three menu"),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.alarm_add),
+          onPressed: () {
+            print('Button Clicked');
+          },
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: const <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.green),
+                child: Text("Home"),
+              ),
+              ListTile(
+                title: Text("Home"),
+                leading: Icon(Icons.home),
+              ),
+              ListTile(
+                title: Text("Setting"),
+                leading: Icon(Icons.settings),
+              ),
+              ListTile(
+                title: Text("Profile"),
+                leading: Icon(Icons.person),
+              ),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            currentIndex: 1,
+            fixedColor: Colors.cyan,
+            backgroundColor: Colors.purple,
+            items: const [
+              BottomNavigationBarItem(
+                label: "Home",
+                icon: Icon(Icons.home),
+              ),
+              BottomNavigationBarItem(
+                label: "Chat",
+                icon: Icon(Icons.chat_bubble),
+              ),
+              BottomNavigationBarItem(
+                label: "Profile",
+                icon: Icon(Icons.person),
+              ),
+            ],
+            onTap: (int indexOfItem) {}),
+      ),
+      debugShowCheckedModeBanner: false,
+      //debugShowMaterialGrid: true,
+    );
+  }
+}
